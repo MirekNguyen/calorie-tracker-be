@@ -10,6 +10,6 @@ export class AuthService {
     if (!user) {
       throw new HttpException('Invalid credentials', 400);
     }
-    return jwt.sign({ username, userId: user.id }, 'ljsafkadsjkfalfSecret', { expiresIn: '1h' });
+    return jwt.sign({ username, userId: user.id }, process.env.JWT_SECRET, { expiresIn: '1h' });
   }
 }

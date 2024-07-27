@@ -1,6 +1,7 @@
-import { Body, Controller, Delete, Get, NotFoundException, Param, ParseIntPipe, Post, Query } from '@nestjs/common';
+import { Body, Controller, Delete, Get, NotFoundException, Param, ParseIntPipe, Post, Query, UseGuards } from '@nestjs/common';
 import { MealEntryService } from './meal-entry.service';
 import { CreateMealEntryDto } from './dto/meal-entry.dto';
+import { AuthGuard } from 'src/auth/auth.guard';
 
 @Controller('meal-entry')
 export class MealEntryController {
@@ -12,6 +13,7 @@ export class MealEntryController {
   }
 
   @Post()
+  @UseGuards(AuthGuard)
   createMealEntry(
     @Body() mealEntry: CreateMealEntryDto,
   ) {
