@@ -14,20 +14,25 @@ datasource db {
 }
 
 model User {
-  id Int @id @default(autoincrement())
+  id       Int    @id @default(autoincrement())
+  name     String
+  surname  String
+  username String @unique
+  password String
+  email    String @unique
 
   @@map("users")
 }
 
 model MealEntry {
-  id       Int   @id @default(autoincrement())
+  id       Int      @id @default(autoincrement())
   calories Float
   proteins Float
   carbs    Float
   fats     Float
   amount   Float
   mealId   Int?
-  meal     Meal? @relation(fields: [mealId], references: [id])
+  meal     Meal?    @relation(fields: [mealId], references: [id])
   date     DateTime
 
   @@map("meal_entries")
